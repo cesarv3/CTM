@@ -17,10 +17,19 @@
             title="Obras"
             text="Obras de la constructora"
           >
+            <v-text-field
+              class = busqueda
+              v-model="busquedaObras"
+              label="Buscar"
+              append-icon="mdi-magnify"
+              single-line
+              hide-details
+            ></v-text-field>
             <v-data-table
               :headers="headers"
               :items="items"
-              hide-actions
+              :items-per-page="5"
+              :search="busquedaObras"
             >
               <template
                 slot="headerCell"
@@ -146,23 +155,24 @@ export default {
         {
           sortable: false,
           text: 'Nombre',
-          value: 'nombreObra'
+          value: 'nombre'
         },
         {
           sortable: false,
           text: 'Descripción',
-          value: 'descripcionObra'
+          value: 'descripcion'
         },
         {
           sortable: false,
           text: 'Ubicación',
-          value: 'ubicacionObra'
+          value: 'ubicacion'
         },
         {
           sortable: false,
           text: 'Opciones'
         }
       ],
+      busquedaObras: '',
       items: [],
       mostrarVentanaAgregar: false,
       idObra: '',
