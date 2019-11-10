@@ -1,3 +1,5 @@
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbvue/lib/mdbvue.css'
 // =========================================================
 // * Vuetify Material Dashboard - v1.0.0
 // =========================================================
