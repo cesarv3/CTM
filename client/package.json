@@ -37,6 +37,6 @@
     "vuex-router-sync": "5.0.0"
   },
   "engines": {
-    "node": "10.15.2"
+    "node": "10.16.3"
   }
 }
