@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "chartist": "0.11.0",
+    "core-js": "^3.4.0",
     "express": "^4.17.1",
     "mdbvue": "6.0.0",
     "node-sass": "4.9.3",
@@ -42,10 +43,6 @@
     "vuex-router-sync": "5.0.0"
   },
   "engines": {
-<<<<<<< HEAD
     "node": "10.15.2"
-=======
-    "node": "10.16.3"
->>>>>>> 0a23f9db891b7af0c50c5c72b3650a62218fb190
   }
 }
