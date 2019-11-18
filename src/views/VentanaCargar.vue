@@ -73,7 +73,7 @@ export default {
         this.empleados = text.split('\n')
         for (var i = 0; i < this.empleados.length; i++) {
           this.atributosEmpleados = this.empleados[i].split('|')
-          axios.post('http://localhost:3000/api/empleados', Qs.stringify({apPaterno: this.atributosEmpleados[0], apMaterno: this.atributosEmpleados[1], nombre: this.atributosEmpleados[2], telefono: this.atributosEmpleados[3], domicilio: this.atributosEmpleados[4]})).then((res) => {
+          axios.post('https://ctmbackend.herokuapp.com/api/empleados', Qs.stringify({apPaterno: this.atributosEmpleados[0], apMaterno: this.atributosEmpleados[1], nombre: this.atributosEmpleados[2], telefono: this.atributosEmpleados[3], domicilio: this.atributosEmpleados[4]})).then((res) => {
           }).catch((error) => {
           })
         }
@@ -82,7 +82,7 @@ export default {
         this.herramientas = text.split('\n')
         for (i = 0; i < this.herramientas.length; i++) {
           this.atributosHerramientas = this.herramientas[i].split('|')
-          axios.post('http://localhost:3000/api/herramientas', Qs.stringify({nombre: this.atributosHerramientas[0], descripcion: this.atributosHerramientas[1]})).then((res) => {
+          axios.post('https://ctmbackend.herokuapp.com/api/herramientas', Qs.stringify({nombre: this.atributosHerramientas[0], descripcion: this.atributosHerramientas[1]})).then((res) => {
           }).catch((error) => {
           })
         }
@@ -91,7 +91,7 @@ export default {
         this.materiales = text.split('\n')
         for (i = 0; i < this.materiales.length; i++) {
           this.atributosMateriales = this.materiales[i].split('|')
-          axios.post('http://localhost:3000/api/materiales', Qs.stringify({nombre: this.atributosMateriales[0], precio: this.atributosMateriales[1], unidad: this.atributosMateriales[2]})).then((res) => {
+          axios.post('https://ctmbackend.herokuapp.com/api/materiales', Qs.stringify({nombre: this.atributosMateriales[0], precio: this.atributosMateriales[1], unidad: this.atributosMateriales[2]})).then((res) => {
           }).catch((error) => {     
           })
         }
@@ -100,7 +100,7 @@ export default {
         this.equipos = text.split('\n')
         for (i = 0; i < this.equipos.length; i++) {
           this.atributosEquipos = this.equipos[i].split('|')
-          axios.post('http://localhost:3000/api/equipos', Qs.stringify({nombre: this.atributosEquipos[0], descripcion: this.atributosEquipos[1]})).then((res) => {
+          axios.post('https://ctmbackend.herokuapp.com/api/equipos', Qs.stringify({nombre: this.atributosEquipos[0], descripcion: this.atributosEquipos[1]})).then((res) => {
           }).catch((error) => {
           })
         }
