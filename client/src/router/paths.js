@@ -4,8 +4,14 @@
  * official documentation https://router.vuejs.org/en/
  */
 export default [
+
   {
-    path: '',
+    path: '/',
+    name: ' ',
+    view: 'Log-in'
+  },
+  {
+    path: '/home',
     name: ' ',
     // Relative to /src/views
     view: 'Home'

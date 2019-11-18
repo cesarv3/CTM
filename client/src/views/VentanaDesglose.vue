@@ -49,25 +49,34 @@
                 Empleados
               </v-tab>
               <v-tab class="mr-4">
-                <v-icon class="mr-2">mdi-axe</v-icon>
+                <v-icon class="mr-2">mdi-hammer</v-icon>
                 Herramientas
               </v-tab>
               <v-tab class="mr-4">
-                <v-icon class="mr-2">mdi-audio-video</v-icon>
+                <v-icon class="mr-2">mdi-towing</v-icon>
                 Equipos
               </v-tab>
               <v-tab class="mr-4">
-                <v-icon class="mr-2">mdi-anvil</v-icon>
+                <v-icon class="mr-2">mdi-wall</v-icon>
                 Materiales
               </v-tab>
             </v-tabs>
           </v-flex>
           <v-tabs-items v-model="tabs">
             <v-tab-item>
+              <v-text-field
+                class = busqueda
+                v-model="busquedaEmpleados"
+                label="Buscar"
+                append-icon="mdi-magnify"
+                single-line
+                hide-details
+              ></v-text-field>
               <v-data-table
                 :headers="headerEmpleados"
                 :items= "empleadosAsignados"
-                hide-actions
+                :items-per-page="5"
+                :search="busquedaEmpleados"
               >
               <template
                 slot="headerCell"
@@ -111,10 +120,19 @@
             </v-layout>
             </v-tab-item>
             <v-tab-item>
+               <v-text-field
+                class = busqueda
+                v-model="busquedaHerramientas"
+                label="Buscar"
+                append-icon="mdi-magnify"
+                single-line
+                hide-details
+              ></v-text-field>
               <v-data-table
                 :headers="headerHerramientas"
                 :items = "herramientasAsignadas"
-                hide-actions
+                :items-per-page="5"
+                :search="busquedaHerramientas"
               >
               <template
                 slot="headerCell"
@@ -156,10 +174,19 @@
             </v-layout>
             </v-tab-item>
             <v-tab-item>
+               <v-text-field
+                class = busqueda
+                v-model="busquedaEquipos"
+                label="Buscar"
+                append-icon="mdi-magnify"
+                single-line
+                hide-details
+              ></v-text-field>
               <v-data-table
                 :headers="headerEquipos"
                 :items = "equiposAsignados"
-                hide-actions
+                :items-per-page="5"
+                :search="busquedaEquipos"
               >
               <template
                 slot="headerCell"
@@ -200,10 +227,19 @@
             </v-layout>
             </v-tab-item>
             <v-tab-item>
+               <v-text-field
+                class = busqueda
+                v-model="busquedaMateriales"
+                label="Buscar"
+                append-icon="mdi-magnify"
+                single-line
+                hide-details
+              ></v-text-field>
               <v-data-table
                 :headers="headerMateriales"
                 :items = "materialesAsignados"
-                hide-actions
+                :items-per-page="5"
+                :search="busquedaMateriales"
               >
               <template
                 slot="headerCell"
@@ -263,7 +299,7 @@
             <div class ="form-group">
               <label for="inputNombre">Empleado a asignar</label>
               <div>
-              <v-select class ="selector"
+              <v-autocomplete class ="selector"
                 v-bind:items="empleados"
                 label="Seleccione un empleado"
                 v-model="empleado"
@@ -278,7 +314,7 @@
               <template slot="item" slot-scope="data">
                 {{data.item.nombre}} {{data.item.apPaterno}} {{data.item.apMaterno}}
               </template>
-              </v-select>
+              </v-autocomplete>
             </div>
             </div>
           </div>
@@ -302,7 +338,7 @@
             <div class ="form-group">
               <label for="inputNombre">Herramienta a asignar</label>
               <div>
-              <v-select class ="selector"
+              <v-autocomplete class ="selector"
                 v-bind:items="herramientas"
                 label="Seleccione una herramienta"
                 v-model="herramienta"
@@ -317,7 +353,7 @@
               <template slot="item" slot-scope="data">
                 {{data.item.nombre}}
               </template>
-              </v-select>
+              </v-autocomplete>
               <label for="inputCantidad">Cantidad</label>
               <input type = "text" v-model="cantidadHerramienta" class = "form-control" placeholder="Cantidad herramienta" required>
             </div>
@@ -343,7 +379,7 @@
             <div class ="form-group">
               <label for="inputNombre">Equipo a asignar</label>
               <div>
-              <v-select class ="selector"
+              <v-autocomplete class ="selector"
                 v-bind:items="equipos"
                 label="Seleccione un equipo"
                 v-model="equipo"
@@ -358,7 +394,7 @@
               <template slot="item" slot-scope="data">
                 {{data.item.nombre}}
               </template>
-              </v-select>
+              </v-autocomplete>
             </div>
             </div>
           </div>
@@ -382,7 +418,7 @@
             <div class ="form-group">
               <label for="inputNombre">Material a asignar</label>
               <div>
-              <v-select class ="selector"
+              <v-autocomplete class ="selector"
                 v-bind:items="materiales"
                 label="Seleccione un material"
                 v-model="material"
@@ -397,7 +433,7 @@
               <template slot="item" slot-scope="data">
                 {{data.item.nombre}}
               </template>
-              </v-select>
+              </v-autocomplete>
               <label for="inputCantidad">Cantidad</label>
               <input type = "text" v-model="cantidadMaterial" class = "form-control" placeholder="Cantidad material" required>
             </div>
@@ -497,6 +533,10 @@ export default {
           value: 'domicilio'
         }
       ],
+      busquedaHerramientas: '',
+      busquedaEmpleados: '',
+      busquedaEquipos: '',
+      busquedaMateriales: '',
       idActividad: '',
       actividad: Object,
       actividades: [],

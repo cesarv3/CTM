@@ -18,7 +18,7 @@
             text="Actividades por obra"
         >
           <div>
-            <v-select class="selector"
+            <v-autocomplete class="selector"
               v-bind:items="obras"
               label="Seleccione una obra"
               outlined
@@ -27,12 +27,21 @@
               item-text="nombre"
               @input="cargarActividades()"
             >
-            </v-select>
+            </v-autocomplete>
           </div>
+           <v-text-field
+            class = busqueda
+            v-model="search"
+            label="Buscar"
+            append-icon="mdi-magnify"
+            single-line
+            hide-details
+          ></v-text-field>
           <v-data-table
               :headers="headers"
               :items="actividades"
-              hide-actions
+              :items-per-page="5"
+              :search = "search"
             >
               <template
                 slot="headerCell"
@@ -49,12 +58,24 @@
               >
                 <td class="tdLarge">{{ item.descripcion }}</td>
                 <td class="tdLarge">
-                  <v-slider
-                    v-model="item.progreso"
-                    :thumb-size="20"
-                    thumb-label="always"
-                    @click="modificarProgreso(item.descripcion,item.id,item.progreso)"
-                  ></v-slider>
+                  <div v-if="item.progreso < 100">
+                    <v-slider
+                      v-model="item.progreso"
+                      :thumb-size="20"
+                      thumb-label="always"
+                      :color = "enProgreso.color"
+                      @change="modificarProgreso(item.descripcion,item.id,item.progreso)"
+                    ></v-slider>
+                  </div>
+                  <div v-if="item.progreso === 100">
+                    <v-slider
+                      v-model="item.progreso"
+                      :thumb-size="20"
+                      thumb-label="always"
+                      :color = "completada.color"
+                      @change="modificarProgreso(item.descripcion,item.id,item.progreso)"
+                    ></v-slider>
+                  </div>
                 </td>
                 <td><v-btn
                 color = "orange"
@@ -155,14 +176,17 @@ export default {
         {
           sortable: false,
           text: 'Descripción',
-          value: 'descripcionActividad'
+          value: 'descripcion'
         },
         {
           sortable: false,
           text: 'Progreso',
-          value: 'progresoActividad'
+          value: 'progreso'
         }
       ],
+      search: '',
+      enProgreso: {color: 'orange'},
+      completada: {color: 'green'},
       obras: [],
       obra: '',
       actividades: [],
@@ -233,6 +257,9 @@ export default {
 </script>
 
 <style>
+.busqueda {
+  width:300px;
+}
 .tdLarge {
   width:500px;
   word-break:break-all;
