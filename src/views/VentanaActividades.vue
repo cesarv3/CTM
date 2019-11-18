@@ -199,7 +199,7 @@ export default {
   },
   methods: {
     mostrarObras () {
-      axios.get('https://ctmbackend.herokuapp.com/:3000/api/obras').then(result => {
+      axios.get('https://ctmbackend.herokuapp.com/api/obras').then(result => {
         this.obras = result.data
       })
     },
