@@ -175,13 +175,13 @@ export default {
   },
   methods: {
     mostrarObras () {
-      axios.get('http://localhost:3000/api/obras').then(result => {
+      axios.get('https://ctmbackend.herokuapp.com/:3000/api/obras').then(result => {
         this.obras = result.data
       })
     },
     modificarProgreso(descripcion,id,progreso) {
       console.log('a')
-      axios.put(`http://localhost:3000/api/actividades/${id}}`, Qs.stringify({id: id,descripcion: descripcion, progreso:progreso}))
+      axios.put(`https://ctmbackend.herokuapp.com/api/actividades/${id}}`, Qs.stringify({id: id,descripcion: descripcion, progreso:progreso}))
       .then((res) => {
         console.log('Hecho')
       }).catch((error) => {
@@ -194,14 +194,14 @@ export default {
       this.progreso = progreso 
     },
     cargarActividades () {
-      axios.get(`http://localhost:3000/api/actividades/${this.obra}`).then(result => {
+      axios.get(`https://ctmbackend.herokuapp.com/api/actividades/${this.obra}`).then(result => {
         this.actividades = result.data
       }).catch((error) => {
         console.error(error)
       })
     },
     modificarActividad () {
-      axios.put(`http://localhost:3000/api/actividades/${this.idActividad}`, Qs.stringify({id: this.idActividad,descripcion: this.descripcionActividad, progreso: this.progreso}))
+      axios.put(`https://ctmbackend.herokuapp.com/api/actividades/${this.idActividad}`, Qs.stringify({id: this.idActividad,descripcion: this.descripcionActividad, progreso: this.progreso}))
       .then((res) => {
         this.descripcionActividad = ''
         this.progresoActividad = ''
@@ -213,7 +213,7 @@ export default {
 
     },
     crearActividad () {
-      axios.post('http://localhost:3000/api/actividades', Qs.stringify({idObra: this.obra, descripcion: this.descripcionActividad, progreso: this.progreso})).then((res) => {
+      axios.post('https://ctmbackend.herokuapp.com/api/actividades', Qs.stringify({idObra: this.obra, descripcion: this.descripcionActividad, progreso: this.progreso})).then((res) => {
         this.descripcionActividad = ''
         this.progreso = ''
         this.cargarActividades() 
@@ -222,7 +222,7 @@ export default {
       })
     },
     eliminarActividad (id) {
-      axios.delete(`http://localhost:3000/api/actividades/${id}`).then ((res) =>{
+      axios.delete(`https://ctmbackend.herokuapp.com/api/actividades/${id}`).then ((res) =>{
         this.cargarActividades()
       }).catch((error) => {
         alert('Error: No fue posible eliminar la actividad')
